@@ -9,12 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import analyzer.BankStatementAnalyzer;
 import parser.CSVParser;
+import processor.CalculateProcessor;
+import service.StatementParser;
 import transaction.BankTransaction;
 
 public class App {
 
-    private static final String RESOURCES = "src/main/resources/";
+    // private static final String RESOURCES = "src/main/resources/";
+
+    // private static final CSVParser csvParser = new CSVParser();
 
     //#region receiptReadMethod
     /*
@@ -74,6 +79,8 @@ public class App {
     */
     //#endregion receiptReadMethod
 
+    //#region calculateProcessor
+    /*
     public static double calculateTotalAmount(final List<BankTransaction> bankTransactions) {
         // return bankTransactions.stream()
         //         .map(BankTransaction::getAmount)
@@ -101,24 +108,52 @@ public class App {
 
         return bankTransactionsInMonth;
     }
+    */
+    //#endregion calculateProcessor
 
     public static void main(String[] args) throws IOException {
-        // System.out.println("Hello, World!");
+        //#region old code
+        /*
         // receiptCounting(args);
         // searchMonthReceiptCounting(args);
-
-        final CSVParser csvParser = new CSVParser();
 
         final String fileName = args[0];
         final Path path = Paths.get(RESOURCES, fileName);
         final List<String> lines = Files.readAllLines(path);
 
-        final List<BankTransaction> bankTransactions = csvParser.parseLineFromCSV(lines);
+        final BankTransaction bankTransaction = csvParser.parseFromCSV(lines.get(0));
+
+        final List<BankTransaction> bankTransactions = csvParser.parseLinesFromCSV(lines);
+
+        final CalculateProcessor calculateProcessorSingle = new CalculateProcessor(bankTransaction);
+
+        final CalculateProcessor calculateProcessorMulti = new CalculateProcessor(bankTransactions);
 
         System.out.println();
 
-        System.out.println("The total for all transactions is: " + calculateTotalAmount(bankTransactions));
+        summaryPrint(calculateProcessorSingle);
+        System.out.println("The first line from the CSV file is: " + bankTransaction);
 
-        System.out.println("Transactions in January: " + selectInMonth(bankTransactions, 1));
+        System.out.println();
+
+        summaryPrint(calculateProcessorMulti);
+        int i = 1;
+        for (final BankTransaction transaction : bankTransactions) {
+            System.out.println("The " + i +" line from the CSV file is: " + transaction);
+            i++;
+        }
+
+        // System.out.println("The total for all transactions is: " + calculateTotalAmount(bankTransactions));
+
+        // System.out.println("Transactions in January: " + selectInMonth(bankTransactions, 1));
+        */
+        //#endregion old code
+
+        final BankStatementAnalyzer bankStatementAnalyzer = new BankStatementAnalyzer();
+
+        final StatementParser statementParser = new CSVParser();
+
+        bankStatementAnalyzer.setAnalyze(args[0], statementParser);
     }
+
 }
