@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test</title>
+</head>
+<body>
+  <ul style="cursor: pointer;">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+</body>
+<script>
+  // const items = document.querySelectorAll('li');
+
+  // for (let i = 0; i < items.length; i++) {
+  //   items[i].addEventListener('click', function() {
+  //     items[i].style.color = 'red';
+  //     alert('You clicked on item ' + i);
+  //   });
+  // }
+
+  function addClick(items) {
+    for (let i = 0; i < items.length; i++) {
+      items[i].onClick = (function (i) {
+        return function() {
+          alert('You clicked on item ' + i);
+          items[i].style.color = 'red';
+        };
+      }(i));
+    }
+
+    return items;
+  }
+
+  const example = document.querySelectorAll('li');
+  const clickSet = addClick(example);
+  clickSet[1].onClick();
+
+  const game1 = {
+    player: 'Jim',
+    hits: 2,
+    runs: 1,
+    errors: 0,
+  };
+
+  const game2 = {
+    player: 'Jim',
+    hits: 3,
+    runs: 0,
+    errors: 1,
+  };
+
+  const total = {};
+  const stats = Object.keys(game1);
+  for (let i = 0; i < stats.length; i++) {
+    const stat = stats[i];
+
+    if (stat !== 'player') {
+      total[stat] = game1[stat] + game2[stat];
+    }
+  }
+</script>
+</html>
