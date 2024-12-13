@@ -539,7 +539,7 @@ const getInstument = (member => member.instrument);
 
 const instruments = band.map(getInstument);
 
-console.log(instruments);
+// console.log(instruments);
 
 // function solution(n) {
 //   var answer = [];
@@ -785,67 +785,416 @@ console.log(instruments);
 // }
 
 // console.log(solution([-3, -2, -1, 0, 1, 2, 3]));
-const arr = [12, 11, 13, 5, 6];
+// const arr = [12, 11, 13, 5, 6];
 
-const bubbleSort = (arr) => {
-  let len = arr.length;
+// const bubbleSort = (arr) => {
+//   let len = arr.length;
 
-  for (let i = 0; i < len; i++) {
-    for (let j = 0; j < len; j++) {
-      if (arr[j] > arr[j + 1]) {
-        let tmp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = tmp;
+//   for (let i = 0; i < len; i++) {
+//     for (let j = 0; j < len; j++) {
+//       if (arr[j] > arr[j + 1]) {
+//         let tmp = arr[j];
+//         arr[j] = arr[j + 1];
+//         arr[j + 1] = tmp;
+//       }
+//     }
+//   }
+
+//   return arr;
+// }
+
+// const insertionSort = (arr) => {
+//   for (let i = 1; i < arr.length; i++) {
+//     let comparedValue = arr[i];
+//     let minIdx = i - 1;
+
+//     while (minIdx >= 0) {
+//       if (arr[minIdx] > comparedValue) {
+//         arr[minIdx + 1] = arr[minIdx];
+//         minIdx--;
+//       } else {
+//         break;
+//       }
+//     }
+
+//     arr[minIdx + 1] = comparedValue;
+//   }
+
+//   return arr;
+// }
+
+// console.log(insertionSort(arr));
+
+// const binarySearch = (arr, search) => {
+//   let lower = 0;
+//   let upper = arr.length - 1;
+
+//   while (lower <= upper) {
+//     let mid = Math.floor((upper + lower) / 2);
+
+//     valueMid = arr[mid];
+
+//     if (search === valueMid) {
+//       return mid + 1;
+//     } else if (search < valueMid) {
+//       upper = mid - 1;
+//     } else if (search > valueMid) {
+//       lower = mid + 1;
+//     }
+//   }
+// }
+
+// const sortedArr = bubbleSort(arr);
+// console.log(sortedArr);
+// console.log(binarySearch(sortedArr, 5));
+
+
+// function stack() {
+//   const dataStore = [];
+//   let top = -1;
+
+//   return {
+//     push(element) {
+//       dataStore[++top] = element;
+//     },
+
+//     pop() {
+//       if (top === -1) { return undefined; }
+//       return dataStore[top--];
+//     },
+
+//     isEmpty() {
+//       return top === -1;
+//     },
+
+//     peek() {
+//       if (this.isEmpty()) { return undefined; }
+//       return dataStore[top];
+//     },
+
+//     size() {
+//       return top + 1;
+//     },
+
+//     printStack() {
+//       if (this.isEmpty()) {
+//         console.log("Stack is empty.");
+//         return;
+//       }
+//       let stackElements = "";
+//       for (let i = 0; i <= top; i++) {
+//         stackElements += items[i] + (i < top ? ", " : "");
+//       }
+//       console.log(stackElements);
+//     }
+//   };
+// }
+
+// const stack1 = stack();
+
+// stack1.push(1);
+// stack1.push(2);
+// stack1.push(3);
+
+// console.log(stack1.pop());
+// console.log(stack1.pop());
+
+// function Queue() {
+//   const dataStore = [];
+//   let front = 0;
+//   let rear = -1;
+
+//   return {
+//     enqueue(element) {
+//       dataStore[++rear] = element;
+//     },
+
+//     dequeue() {
+//       if (front > rear) {
+//         return undefined;
+//       }
+//       return dataStore[front++];
+//     },
+
+//     peek() {
+//       if (this.isEmpty()) {
+//         return undefined;
+//       }
+//       return dataStore[front];
+//     },
+
+//     isEmpty() {
+//       return front > rear;
+//     },
+
+//     size() {
+//       return rear - front + 1;
+//     },
+
+//     printQueue() {
+//       if (this.isEmpty()) {
+//         console.log("Queue is empty.");
+//         return;
+//       }
+//       let queueElements = "";
+//       for (let i = front; i <= rear; i++) {
+//         queueElements += dataStore[i] + (i < rear ? ", " : "");
+//       }
+//       console.log(queueElements);
+//     }
+//   };
+// }
+
+// function max(arr) {
+//   if (arr.length === 1) return arr[0];
+
+//   const maxOfRest = max(arr.slice(1));
+//   return arr[0] > maxOfRest ? arr[0] : maxOfRest;
+// }
+
+// console.log(max([1, 2, 3, 4]));
+
+// function solution(numbers) {
+//   var answer = 0;
+//   const sorted = numbers.sort((a, b) => a - b);
+//   const max = sorted[sorted.length - 1];
+//   const maxSecond = sorted[sorted.length - 2];
+//   answer = max * maxSecond;
+//   return answer;
+// }
+
+// function solution(n) {
+//   var answer = 0;
+//   const sqrt = Math.sqrt(n);
+//   if (sqrt % 1 === 0) {
+//     answer = 1;
+//   } else {
+//     answer = 2;
+//   }
+//   return answer;
+// }
+
+// function solution(cipher, code) {
+//   var answer = '';
+//   const cipherArr = cipher.split('');
+//   for (let i = code - 1; i < cipherArr.length; i += code) {
+//     answer += cipherArr[i];
+//   }
+//   return answer;
+// }
+
+// console.log(solution('dfjardstddetckdaccccdegk', 4));
+
+// function solution(n) {
+//   var answer = [];
+//   for (let i = 1; i <= n; i++) {
+//     if (n % i === 0) answer.push(i);
+//   }
+//   return answer;
+// }
+
+// console.log(solution(24));
+
+// function solution(order) {
+//   var answer = 0;
+//   const orderArr = order.toString().split('');
+//   for (let i = 0; i < orderArr.length; i++) {
+//     if (orderArr[i] % 3 === 0) answer++;
+//   }
+//   return answer;
+// }
+
+// function solution(order) {
+//   var answer = 0;
+//   const orderArr = order.toString().split('');
+//   for (let i = 0; i < orderArr.length; i++) {
+//     if (orderArr[i] === '0') continue;
+//     if (orderArr[i] % 3 === 0) answer++;
+//   }
+//   return answer;
+// }
+
+// console.log(solution(1230));
+
+// function solution(n) {
+//   var answer = 0;
+//   let 약수 = [];
+//   for (let i = 1; i <= n; i++) {
+//     for (let j = 1; j <= i; j++) {
+//       if (i % j === 0) {
+//         약수.push(j);
+//       }
+//     }
+//     if (약수.length >= 3) {
+//       answer++;
+//     }
+//     약수 = [];
+//   }
+//   return answer;
+// }
+
+// console.log(solution(10));
+
+// function solution(emergency) {
+//   var answer = [emergency.length];
+//   const copy = [...emergency];
+//   const sorted = copy.sort((a, b) => b - a);
+//   console.log(sorted);
+//   for (let i = 0; i < emergency.length; i++) {
+//     for (let j = 0; j < emergency.length; j++) {
+//       if (sorted[i] === emergency[j]) {
+//         answer[j] = i + 1;
+//       }
+//     }
+//   }
+//   return answer;
+// }
+
+// console.log(solution([60, 96, 120, 90, 70]));
+
+// function solution(n) {
+//   if (n <= 1) return 1;
+//   return n * solution(n - 1);
+// }
+
+
+// console.log(solution(4));
+
+// function solution(n) {
+//   let count = 0;
+//   for (let i = 1; i * i <= n; i++) {
+//     if (n % i === 0) {
+//       const j = n / i;
+//       if (i === j) {
+//         // (i, i) is a single unique pair
+//         count += 1;
+//       } else {
+//         // (i, j) and (j, i) are two distinct ordered pairs
+//         count += 2;
+//       }
+//     }
+//   }
+//   return count;
+// }
+
+// console.log(solution(20));
+
+// function solution(age) {
+//   var answer = '';
+//   ageStr = age.toString();
+//   ageArr = ageStr.split('');
+//   for (let i = 0; i < ageArr.length; i++) {
+//     if (ageArr[i] === '0') {
+//       answer += 'a';
+//     } else if (ageArr[i] === '1') {
+//       answer += 'b';
+//     } else if (ageArr[i] === '2') {
+//       answer += 'c';
+//     } else if (ageArr[i] === '3') {
+//       answer += 'd';
+//     } else if (ageArr[i] === '4') {
+//       answer += 'e';
+//     } else if (ageArr[i] === '5') {
+//       answer += 'f';
+//     } else if (ageArr[i] === '6') {
+//       answer += 'g';
+//     } else if (ageArr[i] === '7') {
+//       answer += 'h';
+//     } else if (ageArr[i] === '8') {
+//       answer += 'i';
+//     } else if (ageArr[i] === '9') {
+//       answer += 'j';
+//     }
+//   }
+//   return answer;
+// }
+
+// console.log(solution(23));
+
+function solution(board) {
+  var answer = 0;
+  const rows = board.length;
+  const cols = board[0].length;
+
+  for (let i = 0; i < board.length; i++) {
+
+    for (let j = 0; j < board[i].length; j++) {
+
+      if (board[i][j] === 1) {
+
+        if ((i - 1) >= 0 && (i - 1) < rows && j < cols && j < cols && board[i-1][j] === 0) {
+          board[i-1][j] = 2;
+        }
+
+        if ((i - 1) >= 0 && (i - 1) < rows && (j - 1) >= 0 && (j - 1) < cols && board[i-1][j-1] === 0) {
+          board[i-1][j-1] = 2;
+        }
+
+        if ((i - 1) >= 0 && (i - 1) < rows && (j + 1) >= 0 && (j + 1) < cols && board[i-1][j+1] === 0) {
+          board[i-1][j+1] = 2;
+        }
+
+        if (i >= 0 && i < rows && (j - 1) >= 0 && (j - 1) < cols && board[i][j - 1] === 0) {
+          board[i][j-1] = 2;
+        }
+
+        if (i >= 0 && i < rows && (j + 1) >= 0 && (j + 1) < cols && board[i][j + 1] === 0) {
+          board[i][j+1] = 2;
+        }
+
+        if ((i + 1) >= 0 && (i + 1) < rows && j >= 0 && j < cols && board[i + 1][j] === 0) {
+          board[i+1][j] = 2;
+        }
+
+        if ((i + 1) >= 0 && (i + 1) < rows && (j - 1) >= 0 && (j - 1) < cols && board[i + 1][j - 1] === 0) {
+          board[i+1][j-1] = 2;
+        }
+
+        if ((i + 1) >= 0 && (i + 1) < rows && (j + 1) >= 0 && (j + 1) < cols && board[i + 1][j + 1] === 0) {
+          board[i+1][j+1] = 2;
+        }
       }
     }
   }
 
-  return arr;
-}
-
-const insertionSort = (arr) => {
-  for (let i = 1; i < arr.length; i++) {
-    let comparedValue = arr[i];
-    let minIdx = i - 1;
-
-    while (minIdx >= 0) {
-      if (arr[minIdx] > comparedValue) {
-        arr[minIdx + 1] = arr[minIdx];
-        minIdx--;
-      } else {
-        break;
-      }
-    }
-
-    arr[minIdx + 1] = comparedValue;
-  }
-
-  return arr;
-}
-
-console.log(insertionSort(arr));
-
-const binarySearch = (arr, search) => {
-  let lower = 0;
-  let upper = arr.length - 1;
-
-  while (lower <= upper) {
-    let mid = Math.floor((upper + lower) / 2);
-
-    valueMid = arr[mid];
-
-    if (search === valueMid) {
-      return mid + 1;
-    } else if (search < valueMid) {
-      upper = mid - 1;
-    } else if (search > valueMid) {
-      lower = mid + 1;
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      board[i][j] === 0 ? answer++ : answer;
     }
   }
+
+  return answer;
 }
 
-const sortedArr = bubbleSort(arr);
-console.log(sortedArr);
-console.log(binarySearch(sortedArr, 5));
+console.log(solution([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]));
 
 
+function solution(array) {
+  var answer = 0;
+  let maxVal = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] > maxVal) {
+      maxVal = array[i];
+    }
+  }
+
+  let countArr = new Array(maxVal + 1).fill(0);
+
+  for (let i = 0; i < array.length; i++) {
+    countArr[array[i]]++;
+  }
+
+  let maxCount = 0;
+  for (let i = 0; i < countArr.length; i++) {
+    if (countArr[i] > maxCount) {
+      maxCount = countArr[i];
+      answer = i;
+    } else if (countArr[i] === maxCount) {
+      answer = -1;
+    }
+  }
+
+  return answer;
+}
+
+console.log(solution([1, 2, 2, 1]));

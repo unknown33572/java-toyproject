@@ -38,7 +38,7 @@ public class TransactionProcessor {
     }
     return result;
   }
-  
+
   public double calculateTotalAmount() {
     double total = 0d;
     for (final BankTransaction bankTransaction : bankTransactions) {

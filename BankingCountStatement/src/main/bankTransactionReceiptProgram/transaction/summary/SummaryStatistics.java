@@ -29,7 +29,7 @@ public class SummaryStatistics {
     return average;
   }
 
-  public boolean validate() throws DescriptionTooLongException {
+  // public boolean validate() throws DescriptionTooLongException {
 
-  }
+  // }
 }
