@@ -1111,90 +1111,185 @@ const instruments = band.map(getInstument);
 
 // console.log(solution(23));
 
-function solution(board) {
-  var answer = 0;
-  const rows = board.length;
-  const cols = board[0].length;
+// function solution(board) {
+//   var answer = 0;
+//   const rows = board.length;
+//   const cols = board[0].length;
 
-  for (let i = 0; i < board.length; i++) {
+//   for (let i = 0; i < board.length; i++) {
 
-    for (let j = 0; j < board[i].length; j++) {
+//     for (let j = 0; j < board[i].length; j++) {
 
-      if (board[i][j] === 1) {
+//       if (board[i][j] === 1) {
 
-        if ((i - 1) >= 0 && (i - 1) < rows && j < cols && j < cols && board[i-1][j] === 0) {
-          board[i-1][j] = 2;
+//         if ((i - 1) >= 0 && (i - 1) < rows && j < cols && j < cols && board[i-1][j] === 0) {
+//           board[i-1][j] = 2;
+//         }
+
+//         if ((i - 1) >= 0 && (i - 1) < rows && (j - 1) >= 0 && (j - 1) < cols && board[i-1][j-1] === 0) {
+//           board[i-1][j-1] = 2;
+//         }
+
+//         if ((i - 1) >= 0 && (i - 1) < rows && (j + 1) >= 0 && (j + 1) < cols && board[i-1][j+1] === 0) {
+//           board[i-1][j+1] = 2;
+//         }
+
+//         if (i >= 0 && i < rows && (j - 1) >= 0 && (j - 1) < cols && board[i][j - 1] === 0) {
+//           board[i][j-1] = 2;
+//         }
+
+//         if (i >= 0 && i < rows && (j + 1) >= 0 && (j + 1) < cols && board[i][j + 1] === 0) {
+//           board[i][j+1] = 2;
+//         }
+
+//         if ((i + 1) >= 0 && (i + 1) < rows && j >= 0 && j < cols && board[i + 1][j] === 0) {
+//           board[i+1][j] = 2;
+//         }
+
+//         if ((i + 1) >= 0 && (i + 1) < rows && (j - 1) >= 0 && (j - 1) < cols && board[i + 1][j - 1] === 0) {
+//           board[i+1][j-1] = 2;
+//         }
+
+//         if ((i + 1) >= 0 && (i + 1) < rows && (j + 1) >= 0 && (j + 1) < cols && board[i + 1][j + 1] === 0) {
+//           board[i+1][j+1] = 2;
+//         }
+//       }
+//     }
+//   }
+
+//   for (let i = 0; i < board.length; i++) {
+//     for (let j = 0; j < board[i].length; j++) {
+//       board[i][j] === 0 ? answer++ : answer;
+//     }
+//   }
+
+//   return answer;
+// }
+
+// console.log(solution([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]));
+
+
+// function solution(array) {
+//   var answer = 0;
+//   let maxVal = 0;
+//   for (let i = 0; i < array.length; i++) {
+//     if (array[i] > maxVal) {
+//       maxVal = array[i];
+//     }
+//   }
+
+//   let countArr = new Array(maxVal + 1).fill(0);
+
+//   for (let i = 0; i < array.length; i++) {
+//     countArr[array[i]]++;
+//   }
+
+//   let maxCount = 0;
+//   for (let i = 0; i < countArr.length; i++) {
+//     if (countArr[i] > maxCount) {
+//       maxCount = countArr[i];
+//       answer = i;
+//     } else if (countArr[i] === maxCount) {
+//       answer = -1;
+//     }
+//   }
+
+//   return answer;
+// }
+
+// console.log(solution([1, 2, 2, 1]));
+
+function solution(n) {
+  // var answer = [[]];
+
+  // let spiral = Array.from({ length: n }, () => Array(n).fill(0));
+
+  let answer = [];
+
+  let x = n * n;
+  let y = 1;
+
+  for (let i = 0; i < n; i++) {
+
+    answer[i] = [];
+
+    for (let j = 0; j < n; j++) {
+      answer[i][j] = 0;
+    }
+
+  }
+
+  for (let i = 0; i < n; i++) {
+
+    for (let j = 0; j < n; j++) {
+      if (y <= x) {
+        answer[i][j] = y++;
+      }
+    }
+
+    if (answer[i][n - 1] != 0) {
+      for (let k = i + 1; k < n; k++) {
+        answer[k][n - 1] = y++;
+      }
+
+      if (answer[n - 1][n - 1] != 0) {
+        // break;
+        for (let l = n - 2; l >= 0; l--) {
+          answer[n - 1][l] = y++;
         }
 
-        if ((i - 1) >= 0 && (i - 1) < rows && (j - 1) >= 0 && (j - 1) < cols && board[i-1][j-1] === 0) {
-          board[i-1][j-1] = 2;
-        }
+        // if (answer[n - 1][0] != 0) {
+        //   for (let m = n - 2; m > 0; m--) {
+        //     answer[m][0] = y++;
+        //   }
 
-        if ((i - 1) >= 0 && (i - 1) < rows && (j + 1) >= 0 && (j + 1) < cols && board[i-1][j+1] === 0) {
-          board[i-1][j+1] = 2;
-        }
+        //   if (answer[1][0] != 0) {
+            
+        //     for (let o = 1; o < n - 1; o++) {
+        //       answer[1][o] = y++;
+        //     }
 
-        if (i >= 0 && i < rows && (j - 1) >= 0 && (j - 1) < cols && board[i][j - 1] === 0) {
-          board[i][j-1] = 2;
-        }
+        //     if (answer[1][n - 2] != 0) {
+              
+        //       for (let p = 2; p > 0; p--) {
+        //         answer[2][p] = y++;
+        //       }
 
-        if (i >= 0 && i < rows && (j + 1) >= 0 && (j + 1) < cols && board[i][j + 1] === 0) {
-          board[i][j+1] = 2;
-        }
+        //       if (answer[2][0] != 0) {
+        //         break;
+        //       }
+        //     }
+        //   }
+        // }
+        if (answer[n - 1][i] != 0) {
+          for (let m = n - i - 2; m > i; m--) {
+            answer[m][i] = y++;
+          }
 
-        if ((i + 1) >= 0 && (i + 1) < rows && j >= 0 && j < cols && board[i + 1][j] === 0) {
-          board[i+1][j] = 2;
-        }
+          if (answer[i+1][i] != 0) {
+            for (let o = i+1; o < n - i - 1; o++) {
+              answer[i+1][o] = y++;
+            }
 
-        if ((i + 1) >= 0 && (i + 1) < rows && (j - 1) >= 0 && (j - 1) < cols && board[i + 1][j - 1] === 0) {
-          board[i+1][j-1] = 2;
-        }
+            if (answer[i+1][n - i - 2] != 0) {
+              for (let p = i+2; p > i; p--) {
+                answer[i+2][p] = y++;
+              }
 
-        if ((i + 1) >= 0 && (i + 1) < rows && (j + 1) >= 0 && (j + 1) < cols && board[i + 1][j + 1] === 0) {
-          board[i+1][j+1] = 2;
+              if (answer[i+2][i] != 0) {
+                break;
+              }
+            }
+          }
         }
       }
     }
-  }
 
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      board[i][j] === 0 ? answer++ : answer;
-    }
   }
+  // console.log(x);
+  // console.log(spiral);
 
   return answer;
 }
 
-console.log(solution([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]));
-
-
-function solution(array) {
-  var answer = 0;
-  let maxVal = 0;
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] > maxVal) {
-      maxVal = array[i];
-    }
-  }
-
-  let countArr = new Array(maxVal + 1).fill(0);
-
-  for (let i = 0; i < array.length; i++) {
-    countArr[array[i]]++;
-  }
-
-  let maxCount = 0;
-  for (let i = 0; i < countArr.length; i++) {
-    if (countArr[i] > maxCount) {
-      maxCount = countArr[i];
-      answer = i;
-    } else if (countArr[i] === maxCount) {
-      answer = -1;
-    }
-  }
-
-  return answer;
-}
-
-console.log(solution([1, 2, 2, 1]));
+console.log(solution(5));
